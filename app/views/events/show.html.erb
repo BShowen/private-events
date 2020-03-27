@@ -1,0 +1,10 @@
+<h1><%= @event.creator.name.pluralize.capitalize.insert(-2, "'") %> event.</h1>
+<p><%= render @event %></p>
+
+<% if @event.attendees.any? %>
+    <h2>Guests</h1>
+    <ol>
+        <%= render @event.attendees %>
+    </ol>
+<% end %>
+    

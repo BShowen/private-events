@@ -1,0 +1,25 @@
+<p>Hi, <%= @user.name.capitalize %></p>
+
+<% if @user.events.any? %>
+    <% if @user.upcoming_events.any? %>
+        <h3>Upcoming events</h3>
+        <ol>
+            <%= render @user.upcoming_events %>
+        </ol>
+    <% end %>
+    <% if @user.previous_events.any? %>
+        <h3>Previous events</h3>
+        <ol>
+            <%= render @user.previous_events %>
+        </ol>
+    <% end %>
+<% else %>
+    <h1>You dont have any events</h1>
+<% end %>
+
+<% if @user.attended_events.any? %>
+    <h3>Attending events</h3>
+    <ol>
+        <%= render @user.attended_events %>
+    </ol>
+<% end %>

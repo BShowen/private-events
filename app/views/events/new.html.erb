@@ -1,0 +1,7 @@
+<h1>Hi <%= current_user.name.capitalize %>, create an event!</h1>
+<%= form_for @event do |f| %>
+    <%= f.label :event_name %>:
+    <%= f.text_field :event_name %><br />
+
+    <%= f.submit %>
+<% end %>
