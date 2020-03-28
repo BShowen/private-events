@@ -7,4 +7,10 @@ class Event < ApplicationRecord
 
     scope :past, -> { where("date < :current_time", { current_time: Time.zone.now }) }
     scope :upcoming, -> { where("date > :current_time", { current_time: Time.zone.now }) }
+
+    has_many :invited, class_name: :Invitation, foreign_key: :event_id
+
+    def date #overwrite the default getter method
+        self[:date].strftime("%B %e %Y at %I\:%M%P")
+    end
 end

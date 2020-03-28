@@ -1,16 +1,16 @@
-<p>Hi, <%= @user.name.capitalize %></p>
+<h2><%= @user.name.capitalize %></h2>
 
 <% if @user.events.any? %>
     <% if @user.upcoming_events.any? %>
         <h3>Upcoming events</h3>
         <ol>
-            <%= render @user.upcoming_events %>
+            <%= render @user.upcoming_events %> <!-- This renders the events with views/events/_event -->
         </ol>
     <% end %>
     <% if @user.previous_events.any? %>
         <h3>Previous events</h3>
         <ol>
-            <%= render @user.previous_events %>
+            <%= render @user.previous_events %> <!-- This renders the events with views/events/_event -->
         </ol>
     <% end %>
 <% else %>
@@ -18,8 +18,8 @@
 <% end %>
 
 <% if @user.attended_events.any? %>
-    <h3>Attending events</h3>
+    <h3>Events im attending</h3>
     <ol>
-        <%= render @user.attended_events %>
+        <%= render @user.attended_events %> <!-- This renders the events with views/events/_event -->
     </ol>
 <% end %>

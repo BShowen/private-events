@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
     include SessionsHelper
     include ApplicationHelper
+    include InvitationsHelper
     before_action :authorize
 
     private

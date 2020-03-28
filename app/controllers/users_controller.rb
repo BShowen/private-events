@@ -18,6 +18,13 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
   end
 
+  def index
+    if params[:event_id]
+      @event = Event.find_by(id: params[:event_id])
+    end
+    @users = User.all
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :password)

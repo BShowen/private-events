@@ -3,4 +3,5 @@
     <%= link_to "Log out",  logout_path %>
     <%= link_to "My Account", user_path(current_user) %>
     <%= link_to "Create Event", new_event_path %>
+    <%= link_to "Invites", invitations_path if current_user_has_invites %>
 <% end %>
