@@ -21,6 +21,10 @@ class User < ApplicationRecord
         @upcoming_events = self.events.where("date > :current_time", {current_time: Time.zone.now})
     end
 
+    def event_owner?(event)
+        self.events.include?(event)
+    end
+
     private
     def format_name
         self.name.downcase!
