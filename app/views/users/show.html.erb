@@ -1,20 +1,10 @@
 <h2><%= @user.name.capitalize %></h2>
 
-<% if @user.events.any? %>
-    <% if @user.upcoming_events.any? %>
-        <h3>Upcoming events</h3>
-        <ol>
-            <%= render @user.upcoming_events %> <!-- This renders the events with views/events/_event -->
-        </ol>
-    <% end %>
-    <% if @user.previous_events.any? %>
-        <h3>Previous events</h3>
-        <ol>
-            <%= render @user.previous_events %> <!-- This renders the events with views/events/_event -->
-        </ol>
-    <% end %>
-<% else %>
-    <h1>You dont have any events</h1>
+<%= render "upcoming_events" if @user.upcoming_events.any?%>
+<%= render "previous_events" if @user.previous_events.any? %>
+
+<% unless @user.events.any? %>
+    <h3>You dont have any events</h3>
 <% end %>
 
 <% if @user.attended_events.any? %>

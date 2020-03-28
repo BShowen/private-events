@@ -19,9 +19,9 @@ end
 9.times do |n|
     @user = User.all[n]
     @user.events.create(event_name: "Event by #{@user.name}", date: Time.zone.now-2.days)
-    add_guests(@user.events.first)
+    # add_guests(@user.events.first)
     @user.events.create(event_name: "Event by #{@user.name}", date: Time.zone.now+2.days)
-    add_guests(@user.events.second)
+    # add_guests(@user.events.second)
 end
 
 
