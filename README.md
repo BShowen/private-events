@@ -4,7 +4,7 @@ Things I need to  fix
 
 <!-- 1) any user can view an event and invite people. only event hosts should be able to invite people.  -->
 
-<!-- 2) creating a new event form doesnt have a date field.  -->
+<!-- 2) add date field to event form.  -->
 
 3) Dont allow events to be created in the past. 
 
@@ -17,3 +17,11 @@ Things I need to  fix
 6) When an event has passed you should not be able to invite anyone to it. 
 
 7) I need to add flash alerts. 
+
+8) app crashes when you try to show an event that doesnt exist. this is because the app finds the event based on the query parameter event_id which can be forged. My current controller config allows this and blindy accepts the query param and searches the DB for an event with that id. if it doesnt exist then @event is nil but it still loads the view which crashes with a nil event. 
+
+<!-- 9) add time column to events.  -->
+
+10) change date column in events to hold ony the date without the time. 
+
+11) sort the past and upcoming  events by the date and the time
