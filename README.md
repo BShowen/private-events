@@ -2,9 +2,11 @@
 
 Things I need to  fix
 
-1) any user can view an event and invite people. only event hosts should be able to invite people. 
+<!-- 1) any user can view an event and invite people. only event hosts should be able to invite people.  -->
 
-2) creating a new event form doesnt have a date field. Dont allow events to be created in the past. 
+<!-- 2) creating a new event form doesnt have a date field.  -->
+
+3) Dont allow events to be created in the past. 
 
 3) When a user accepts an invite he needs to be added to the events "coming" list. 
 

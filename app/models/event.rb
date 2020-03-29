@@ -10,7 +10,7 @@ class Event < ApplicationRecord
 
     has_many :invited, class_name: :Invitation, foreign_key: :event_id
 
-    def date #overwrite the default getter method
+    def formatted_date #overwrite the default getter method
         self[:date].strftime("%B %e %Y at %I\:%M%P")
     end
 end
