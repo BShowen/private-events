@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   resources :users, only: [:new, :create, :show, :index]
   resources :events, only: [:new, :index, :show, :create]
-  resources :invitations, only: [:index, :create, :update]
+  resources :invitations, only: [:index, :create, :update, :destroy]
 end

@@ -14,16 +14,37 @@ class InvitationsController < ApplicationController
 
     def update
         @invite = Invitation.find_by(id: params[:id])
-        @invite.update_attribute(:accepted, true)
-        if current_user_has_invites
-            redirect_to invitations_path 
+        @event_owner = @invite.invite_sender
+        @event = @invite.event
+        @event.attendees << current_user
+        @invite.destroy
+        flash[:notice] = "Invite accepted."
+        properly_redirect
+    end
+
+    def destroy
+        byebug
+        @invite = Invitation.find_by(id: params[:id])
+        if current_user.id == @invite.invite_receiver.id
+            flash[:notice] = "Event has been declined."
+            @invite.destroy
+            properly_redirect
         else
+            flash[:notice] = "Something went wrong. Try again."
             redirect_to current_user
-        end
+        end 
     end
 
     private
     def invite_params
         params.require(:invitation).permit(:invite_sender, :invite_receiver, :event_id)
+    end
+
+    def properly_redirect #redirect to invites if the user has more invites otherwise redirect to the users account page
+        if current_user_has_invites
+            redirect_to invitations_path 
+        else
+            redirect_to current_user
+        end
     end
 end
