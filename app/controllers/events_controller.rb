@@ -22,6 +22,13 @@ class EventsController < ApplicationController
 
     private
     def event_params
+        concate_date_and_time
         params.require(:event).permit(:event_name, :event_date, :event_time)
+    end
+
+    def concate_date_and_time
+        datetime = "#{params[:event][:event_date]} #{params[:event][:event_time]}"
+        params[:event][:event_date] = datetime
+        params[:event][:event_time] = datetime
     end
 end

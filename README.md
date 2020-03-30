@@ -6,7 +6,7 @@ Things I need to  fix
 
 <!-- 2) add date field to event form.  -->
 
-3) When a user accepts an invite he needs to be added to the events "accepted users" list
+<!-- 3) When a user accepts an invite he needs to be added to the events "attendees" list -->
 
 4) an events show page should display the list of invited users, and a list of accepted users. 
 
@@ -30,4 +30,4 @@ Things I need to  fix
 
 15) Account page should show accepted events.
 
-16) when a user accepts/declines an invite you need to delete the invite from the DB. 
+<!-- 16) when a user accepts/declines an invite you need to delete the invite from the DB.  -->

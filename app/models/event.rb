@@ -10,8 +10,8 @@ class Event < ApplicationRecord
     validates :event_time, presence: true
     validate :event_cannot_be_in_past
 
-    scope :past, -> { where("event_date < :current_time", { current_time: Time.zone.now}) }
-    scope :upcoming, -> { where("event_date > :current_time", { current_time: Time.zone.now }) }
+    scope :past, -> { where("event_time < :current_time", { current_time: Time.zone.now }) }
+    scope :upcoming, -> { where("event_time > :current_time", { current_time: Time.zone.now }) }
 
     def date_of_event #overwrite the default getter method
         self[:event_date].strftime("%B %e %Y")
@@ -24,12 +24,8 @@ class Event < ApplicationRecord
     private
     def event_cannot_be_in_past
         if (event_date.present? && event_time.present?) 
-            return if event_date > Time.zone.now.midnight
-            if event_date < Time.zone.now.midnight
-                errors.add(:event_date, "cannot be in the past")
-            elsif event_time < Time.zone.now
-                errors.add(:event_time, "cannot be in the past")
-            end
+            return if event_date > Time.zone.now
+            errors.add(:event, "cannot be in the past")
         end
     end
 end
