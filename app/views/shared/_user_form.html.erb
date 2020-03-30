@@ -1,4 +1,7 @@
 <%= form_for @user, url: yield(:path) do |f| %>
+
+    <%= render "shared/error_messages", object: f.object %>
+
     <%= f.label :name %>
     <%= f.text_field :name %><br />
 
@@ -6,10 +9,4 @@
     <%= f.password_field :password %><br />
 
     <%= f.submit yield(:button_text) %>
-<% end %>
-
-<% if @user.errors.any? %>
-    <% @user.errors.full_messages.each do |message| %>
-     <P><%= message %></p>
-    <% end %>
 <% end %>

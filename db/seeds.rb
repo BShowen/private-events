@@ -18,8 +18,12 @@ end
 
 9.times do |n|
     @user = User.all[n]
-    @user.events.new(event_name: "Event by #{@user.name}", details: Time.now-2.days).save(validate: false)
-    # add_guests(@user.events.first)
-    @user.events.create(event_name: "Event by #{@user.name}", details: Time.now+2.days)
-    # add_guests(@user.events.second)
+    @user.events.new(  event_name: "Event by #{@user.name}", 
+                                        event_date: Time.parse( "2019-08-08" ), 
+                                        event_time: Time.zone.now+n.hours ).save( validate: false )
+    add_guests(@user.events.first)
+    @user.events.create(  event_name: "Event by #{@user.name}", 
+                                            event_date: Time.parse( "2030-09-20" ), 
+                                            event_time: Time.zone.now-n.hours )
+    add_guests(@user.events.second)
 end

@@ -7,23 +7,35 @@ class User < ApplicationRecord
     has_many :invites_sent, class_name: "Invitation", foreign_key: :invite_sender_id
     has_many :invites_received, class_name: "Invitation", foreign_key: :invite_receiver_id
 
-    has_secure_password
     validates :name, presence: true
+    has_secure_password
     validates :name, uniqueness: true
 
     before_save :format_name
 
-    def previous_events
-        #I should make a class method that I can call to get the events from the current user. This is breaking the rule of abstraction. 
-        @past_events = self.events.where("event_date < :current_time", {current_time: Time.zone.now})
-    end
+    # def previous_events
+    #     #I should make a class method that I can call to get the events from the current user. This is breaking the rule of abstraction. 
+    #     @past_events ||= self.events.where("event_date < :current_time", {current_time: Time.zone.now})
+    # end
 
-    def upcoming_events
-        @upcoming_events = self.events.where("event_date > :current_time", {current_time: Time.zone.now})
+    # def upcoming_events
+    #     @upcoming_events ||= self.events.where("event_date > :current_time", {current_time: Time.zone.now})
+    # end
+
+    def sorted_events(future: false, past: false)
+        if future 
+            @past_events ||= self.events.where("event_date < :current_time", {current_time: Time.zone.now})
+        elsif past
+            @upcoming_events ||= self.events.where("event_date > :current_time", {current_time: Time.zone.now})
+        end
     end
 
     def event_owner?(event)
         self.events.include?(event)
+    end
+
+    def attending_events
+        @my_events ||= self.attended_events
     end
 
     private

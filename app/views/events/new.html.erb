@@ -1,5 +1,10 @@
 <h1>Hi <%= current_user.name.capitalize %>, create an event!</h1>
+
+
 <%= form_for @event do |f| %>
+    
+    <%= render "shared/error_messages", object: f.object %>
+
     <%= f.label :event_name %>:
     <%= f.text_field :event_name %><br />
 
@@ -10,10 +15,4 @@
     <%= f.time_field :event_time %><br />
 
     <%= f.submit %>
-<% end %>
-
-<% if @event.errors.any? %>
-    <% @event.errors.full_messages.each do |message| %>
-     <P><%= message %></p>
-    <% end %>
 <% end %>

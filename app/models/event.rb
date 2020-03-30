@@ -23,7 +23,6 @@ class Event < ApplicationRecord
 
     private
     def event_cannot_be_in_past
-        byebug
         if (event_date.present? && event_time.present?) 
             return if event_date > Time.zone.now.midnight
             if event_date < Time.zone.now.midnight
