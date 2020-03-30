@@ -14,11 +14,12 @@ class User < ApplicationRecord
     before_save :format_name
 
     def previous_events
-        @past_events = self.events.where("date < :current_time", {current_time: Time.zone.now})
+        #I should make a class method that I can call to get the events from the current user. This is breaking the rule of abstraction. 
+        @past_events = self.events.where("event_date < :current_time", {current_time: Time.zone.now})
     end
 
     def upcoming_events
-        @upcoming_events = self.events.where("date > :current_time", {current_time: Time.zone.now})
+        @upcoming_events = self.events.where("event_date > :current_time", {current_time: Time.zone.now})
     end
 
     def event_owner?(event)

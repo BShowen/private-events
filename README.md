@@ -6,8 +6,6 @@ Things I need to  fix
 
 <!-- 2) add date field to event form.  -->
 
-3) Dont allow events to be created in the past. 
-
 3) When a user accepts an invite he needs to be added to the events "coming" list. 
 
 4) an events show page should deisplay the list of invited userd and a list of users who have accepted the invite. 
@@ -22,6 +20,14 @@ Things I need to  fix
 
 <!-- 9) add time column to events.  -->
 
-10) change date column in events to hold ony the date without the time. 
+<!-- 10) change date column in events to hold ony the date without the time.  -->
 
-11) sort the past and upcoming  events by the date and the time
+<!-- 11) Dont allow events to be created in the past.  -->
+
+<!-- 12) sort the past and upcoming  events by the date and the time -->
+
+13) update seed to properly create events with this new time column
+
+14) form errors should be in the application layout to DRY code
+
+15) Account page should show accepted events and declined events

@@ -3,8 +3,8 @@
     <%= f.label :event_name %>:
     <%= f.text_field :event_name %><br />
 
-    <%= f.label :date %>
-    <%= f.date_field :date %><br />
+    <%= f.label :event_date %>
+    <%= f.date_field :event_date, min: Time.now.strftime("%Y-%m-%e") %><br />
 
     <%= f.label :event_time %>
     <%= f.time_field :event_time %><br />

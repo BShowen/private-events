@@ -7,3 +7,9 @@
 
     <%= f.submit yield(:button_text) %>
 <% end %>
+
+<% if @user.errors.any? %>
+    <% @user.errors.full_messages.each do |message| %>
+     <P><%= message %></p>
+    <% end %>
+<% end %>

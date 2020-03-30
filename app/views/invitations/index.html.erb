@@ -1,7 +1,6 @@
 <% @invitations.each do |invite| %>
     <% next if invite.accepted? %>
-    <p><%= invite.invite_sender.name.capitalize %> has invited you to his event.</p>
-    <p>Event name: <%= invite.event.event_name %></p>
-    <p>When: <%= invite.event.date %></p>
+    <p>Invitation from <%= invite.event.creator.name.capitalize %></p>
+    <%= render invite.event %>
     <%= button_to "Accept", invitation_path(invite.id), params: "true", method: :patch %>
 <% end %>
