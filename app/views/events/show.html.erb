@@ -11,7 +11,7 @@
 <% if current_user.event_owner?(@event) %>
     <h3>Invite friends</h3>
     <%= form_for :invitation, url: invitations_path do |f| %>
-        <%= f.hidden_field :event_id, value: @event.id %>
+        <% session[:event_id] = @event.id %>
         <%= f.collection_select :invite_receiver, uninvited_users(@event), :id, :name %>
         <%= f.submit "Send invite" %>
     <% end %>

@@ -4,16 +4,17 @@ class InvitationsController < ApplicationController
     end
 
     def create
-        @event = Event.find_by(id: invite_params[:event_id])
+        @event = Event.find_by(id: session[:event_id])
         @sender = current_user
         @receiver = User.find_by(id: invite_params[:invite_receiver])
         @invite = Invitation.new(invite_sender: @sender, invite_receiver: @receiver, event: @event)
         @invite.save
+        session.clear
         redirect_back(fallback_location: root_path)
     end
 
     def update
-        @invite = Invitation.find_by(id: params[:id])
+        @invite = Invitation.find_by(id: session[:invite_id])
         @event_owner = @invite.invite_sender
         @event = @invite.event
         @event.attendees << current_user
@@ -23,9 +24,9 @@ class InvitationsController < ApplicationController
     end
 
     def destroy
-        byebug
-        @invite = Invitation.find_by(id: params[:id])
-        if current_user.id == @invite.invite_receiver.id
+        @invite = Invitation.find_by(id: session[:invite_id])
+        session.clear
+        if @invite && current_user.id == @invite.invite_receiver.id
             flash[:notice] = "Event has been declined."
             @invite.destroy
             properly_redirect
