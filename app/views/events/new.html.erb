@@ -8,11 +8,8 @@
     <%= f.label :event_name %>:
     <%= f.text_field :event_name %><br />
 
-    <%= f.label :event_date %>
-    <%= f.date_field :event_date, min: Time.now.strftime("%Y-%m-%e") %><br />
-
-    <%= f.label :event_time %>
-    <%= f.time_field :event_time %><br />
+    <%= f.label :date_and_time %>
+    <%= f.datetime_select :date_and_time, ampm: true, start_year: DateTime.now.year, end_year: (DateTime.now+10.years).year  %>
 
     <%= f.submit %>
 <% end %>

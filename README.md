@@ -31,3 +31,7 @@ Things I need to  fix
 15) Account page should show accepted events.
 
 <!-- 16) when a user accepts/declines an invite you need to delete the invite from the DB.  -->
+
+<!-- • Event date and time can be concatenated into one column and then parsed when you read and write.  -->
+
+• Currently you can send an empty invite and it breaks the app. Fix this

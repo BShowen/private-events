@@ -15,9 +15,9 @@ class User < ApplicationRecord
 
     def sorted_events(future: false, past: false)
         if future 
-            @upcoming_events = self.events.where("event_date > :current_time", {current_time: Time.zone.now})
+            @upcoming_events = self.events.where("date_and_time > :current_time", {current_time: Time.zone.now})
         elsif past
-            @past_events = self.events.where("event_date < :current_time", {current_time: Time.zone.now})
+            @past_events = self.events.where("date_and_time < :current_time", {current_time: Time.zone.now})
         end
     end
 

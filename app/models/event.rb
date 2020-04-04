@@ -6,25 +6,24 @@ class Event < ApplicationRecord
     has_many :invited, class_name: :Invitation, foreign_key: :event_id
 
     validates :event_name, presence: true
-    validates :event_date, presence: true
-    validates :event_time, presence: true
     validate :event_cannot_be_in_past
+    validates :date_and_time, presence: true
 
-    scope :past, -> { where("event_time < :current_time", { current_time: Time.zone.now }) }
-    scope :upcoming, -> { where("event_time > :current_time", { current_time: Time.zone.now }) }
+    scope :past, -> { where("date_and_time < :current_time", { current_time: Time.zone.now }) }
+    scope :upcoming, -> { where("date_and_time > :current_time", { current_time: Time.zone.now }) }
 
     def date_of_event #overwrite the default getter method
-        self[:event_date].strftime("%B %e %Y")
+        self[:date_and_time].strftime("%B %e %Y")
     end
 
     def time_of_event
-        self[:event_time].strftime("%I\:%M%P")
+        self[:date_and_time].strftime("%I\:%M%P")
     end
 
     private
     def event_cannot_be_in_past
-        if (event_date.present? && event_time.present?) 
-            return if event_date > Time.zone.now
+        if date_and_time.present?
+            return if date_and_time > Time.zone.now
             errors.add(:event, "cannot be in the past")
         end
     end

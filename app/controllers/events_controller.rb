@@ -22,13 +22,16 @@ class EventsController < ApplicationController
 
     private
     def event_params
-        concate_date_and_time
-        params.require(:event).permit(:event_name, :event_date, :event_time)
+        params[:event][:date_and_time] = parse_datetime
+        params.require(:event).permit(:event_name, :date_and_time)
     end
 
-    def concate_date_and_time
-        datetime = "#{params[:event][:event_date]} #{params[:event][:event_time]}"
-        params[:event][:event_date] = datetime
-        params[:event][:event_time] = datetime
-    end
+    def parse_datetime
+        month = params[:event].delete("date_and_time(2i)")
+        day = params[:event].delete("date_and_time(3i)")
+        year = params[:event].delete("date_and_time(1i)")
+        hour = params[:event].delete("date_and_time(4i)")
+        minute = params[:event].delete("date_and_time(5i)")
+        Time.new(year, month, day, hour, minute)
+    end 
 end
