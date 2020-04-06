@@ -4,6 +4,10 @@ class InvitationsController < ApplicationController
     end
 
     def create
+        if params[:invitation].nil?  #redirects a potentially malicious invitation.
+            flash[:notice] = "Something went wrong."
+            redirect_to current_user || root_url and return
+        end
         @event = Event.find_by(id: session[:event_id])
         @sender = current_user
         @receiver = User.find_by(id: invite_params[:invite_receiver])

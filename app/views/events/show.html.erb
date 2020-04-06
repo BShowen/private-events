@@ -1,18 +1,31 @@
 <h1><%= @event.creator.name.pluralize.capitalize.insert(-2, "'") %> event.</h1>
-<p><%= render @event %></p>
+<h3><%= render @event %></h3>
 
 <% if @event.attendees.any? %>
-    <h2>Guests</h1>
+    <h2>Accepted invites</h2>
     <ol>
         <%= render @event.attendees %>
     </ol>
 <% end %>
 
-<% if current_user.event_owner?(@event) %>
-    <h3>Invite friends</h3>
-    <%= form_for :invitation, url: invitations_path do |f| %>
-        <% session[:event_id] = @event.id %>
-        <%= f.collection_select :invite_receiver, uninvited_users(@event), :id, :name %>
-        <%= f.submit "Send invite" %>
+<% if @event.invited.any? %>
+    <h2>Pending invites</h2>
+    <ul>
+        <% @event.invited.each do |invite| %>
+            <li><h5><%= invite.invite_receiver.name.capitalize %></h5></li>
+        <% end %>   
+    </ul>
+<% end %>   
+
+<% if current_user.event_owner?(@event) && !@event.old? %>
+    <% if  uninvited_users(@event).empty? %>
+        <p>There are no users to invite.</p>
+    <% else %>
+        <h3>Invite friends</h3>
+        <%= form_for :invitation, url: invitations_path do |f| %>
+            <% session[:event_id] = @event.id %>
+            <%= f.collection_select :invite_receiver, uninvited_users(@event), :id, :name %> 
+            <%= f.submit "Send invite" %>
+        <% end %>
     <% end %>
 <% end %>

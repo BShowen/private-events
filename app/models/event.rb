@@ -20,6 +20,10 @@ class Event < ApplicationRecord
         self[:date_and_time].strftime("%I\:%M%P")
     end
 
+    def old?
+        self.date_and_time < Time.zone.now
+    end
+
     private
     def event_cannot_be_in_past
         if date_and_time.present?

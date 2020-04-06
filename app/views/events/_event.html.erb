@@ -1,5 +1,5 @@
 <li>
-    <p><%= link_to event.event_name, event_path(event.id) %></p>
-    <p><%= event.date_of_event %></p>
-    <p><%= event.time_of_event %></p>
+    <p>Event name: <%= link_to event.event_name, event_path(event.id) %></p>
+    <p>Date: <%= event.date_of_event %></p>
+    <p>Time: <%= event.time_of_event %></p>
 </li>

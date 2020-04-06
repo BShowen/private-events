@@ -13,7 +13,11 @@ class EventsController < ApplicationController
     end
 
     def show
-        @event = Event.find_by(id: params[:id])
+        @event = Event.includes(:invited).find_by(id: params[:id])
+        if @event.nil?
+            flash[:notice] = "That event doesnt exist"
+            redirect_to current_user || root_url
+        end
     end
 
     def index

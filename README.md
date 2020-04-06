@@ -8,13 +8,13 @@ Things I need to  fix
 
 <!-- 3) When a user accepts an invite he needs to be added to the events "attendees" list -->
 
-4) an events show page should display the list of invited users, and a list of accepted users. 
+<!-- 4) an events show page should display the list of invited users, and a list of accepted users.  -->
 
-6) When an event has passed you should not be able to invite anyone to it. 
+<!-- 6) When an event has passed you should not be able to invite anyone to it.  -->
 
 <!-- 7) I need to add flash alerts.  -->
 
-8) app crashes when you try to show an event that doesnt exist. this is because the app finds the event based on the query parameter event_id which can be forged. My current controller config allows this and blindy accepts the query param and searches the DB for an event with that id. if it doesnt exist then @event is nil but it still loads the view which crashes with a nil event. Add a flash[:notice] = "event not found" and redirect to account page. 
+<!-- 8) app crashes when you try to show an event that doesnt exist. this is because the app finds the event based on the query parameter event_id which can be forged. My current controller config allows this and blindy accepts the query param and searches the DB for an event with that id. if it doesnt exist then @event is nil but it still loads the view which crashes with a nil event. Add a flash[:notice] = "event not found" and redirect to account page.  -->
 
 <!-- 9) add time column to events.  -->
 
@@ -28,10 +28,10 @@ Things I need to  fix
 
 <!-- 14) form errors should be a shared partial layout to DRY code -->
 
-15) Account page should show accepted events.
+<!-- 15) Account page should show accepted events. This is currently done by showing "attending events" -->
 
 <!-- 16) when a user accepts/declines an invite you need to delete the invite from the DB.  -->
 
 <!-- • Event date and time can be concatenated into one column and then parsed when you read and write.  -->
 
-• Currently you can send an empty invite and it breaks the app. Fix this
+<!-- • Currently you can send an empty invite and it breaks the app. Fix this -->
