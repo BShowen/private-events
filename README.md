@@ -29,9 +29,3 @@ A User can send an invitation to another User. So the relationship says that a U
 #### Association between between Event and Invitation
 * An Event can have many Invitations
 * An Invitation belongs to an Event
-
-# TO-DO
-* Fix event sorting logic. Right now when a user is logged in they see events under "events im attending" even if the event is in the past. These events should be categorized as "Events I've attended". 
-* "Events im attending" should only include events in the future. 
-* Rename "Upcoming events" to "My upcoming events"
-* Rename "Past events" to "My past events"

@@ -15,18 +15,22 @@ class User < ApplicationRecord
 
     def sorted_events(future: false, past: false)
         if future 
-            @upcoming_events = self.events.where("date_and_time > :current_time", {current_time: Time.zone.now})
+            @upcoming_events ||= self.events.where("date_and_time > :current_time", {current_time: Time.zone.now})
         elsif past
-            @past_events = self.events.where("date_and_time < :current_time", {current_time: Time.zone.now})
+            @past_events ||= self.events.where("date_and_time < :current_time", {current_time: Time.zone.now})
         end
+    end
+
+    def previously_attended_events
+        @events ||= self.attended_events.where("date_and_time < :current_time", {current_time: Time.zone.now})
     end
 
     def event_owner?(event)
         self.events.include?(event)
     end
 
-    def attending_events
-        @my_events ||= self.attended_events
+    def upcoming_attended_events
+        @my_events ||= self.attended_events.where("date_and_time > :current_time", {current_time: Time.zone.now})
     end
 
     private

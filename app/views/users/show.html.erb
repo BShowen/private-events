@@ -7,9 +7,17 @@
     <h3>You dont have any events</h3>
 <% end %>
 
-<% if @user.attending_events %>
-    <h3>Events im attending</h3>
+<% if @user.previously_attended_events %>
+    <h3>Events I'm attening</h3>
     <ol>
-        <%= render @user.attending_events %> <!-- This renders the events with views/events/_event -->
+        <%= render @user.upcoming_attended_events %> <!-- This renders the events with views/events/_event -->
+    </ol>
+<% end %>
+
+
+<% if @user.previously_attended_events %>
+    <h3>Events I've previously attended</h3>
+    <ol>
+        <%= render @user.previously_attended_events %> <!-- This renders the events with views/events/_event -->
     </ol>
 <% end %>
