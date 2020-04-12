@@ -22,8 +22,8 @@
         <p>There are no users to invite.</p>
     <% else %>
         <h3>Invite friends</h3>
+        <% session[:event_id] = @event.id %>
         <%= form_for :invitation, url: invitations_path do |f| %>
-            <% session[:event_id] = @event.id %>
             <%= f.collection_select :invite_receiver, uninvited_users(@event), :id, :name %> 
             <%= f.submit "Send invite" %>
         <% end %>
