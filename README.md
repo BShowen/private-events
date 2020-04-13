@@ -48,5 +48,9 @@ Now I can call ```@user.invites_sent``` and ```@user.invites_received``` to get 
 * **Events that have Invites**  
 When a user sends an invite to another user this gets recorded in the Invitations table, as explained above. Now when you view that event you can see a list of users who have been invited but have not yet accepted/declined the invitation. When you view an event and you will see **Accepted invitations** and **Pending invitations** with lists of users. This is possible because ```@event.attendees``` is a list of users who can only be added to this list by accepting an invitation and ```@event.invited``` is a list of users who have been invited but havent responded to the invitation. 
 
-# That's it for now
+## That's it for now
 That covers everything I want to exaplain in this application. I'm sure there are better ways to do what I've done here but I am still learning. In the future I'll revisit this application and style it probably with [bootstrap](https://getbootstrap.com/, "Bootstrap") or something else if I'm feeling [Sass](https://sass-lang.com/, "Sass")y. For now this project is considered complete according to [The Odin Project](https://www.theodinproject.com/courses/ruby-on-rails/lessons/associations#project-private-events, "project-private-events") and I'm moving on in the curriculum.  
+
+## To-Do
+* Add unit tests
+* Add integration tests
