@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_03_27_212951) do
 
-  create_table "event_manifests", id: false, force: :cascade do |t|
+  create_table "event_manifests", force: :cascade do |t|
     t.integer "attendee_id"
     t.integer "attended_event_id"
     t.index ["attended_event_id"], name: "index_event_manifests_on_attended_event_id"
